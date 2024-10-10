@@ -1,0 +1,102 @@
+/* Add these styles to your CSS file */
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for the overlay */
+  transition: opacity 0.3s ease; /* Add a smooth transition for opacity changes */
+  opacity: 0;
+  pointer-events: none; /* Disable pointer events when overlay is hidden */
+}
+
+.Overlay--open {
+  opacity: 1;
+  pointer-events: auto; /* Enable pointer events when overlay is visible */
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  outline: none;
+  transition: transform 0.3s ease; /* Add a smooth transition for transform changes */
+  transform: translate(-50%, -50%) scale(0.9); /* Start with a slightly smaller size */
+  opacity: 0;
+  pointer-events: none; /* Disable pointer events when modal is hidden */
+}
+
+.Modal--open {
+  transform: translate(-50%, -50%) scale(1); /* Bring it back to the original size */
+  opacity: 1;
+  pointer-events: auto; /* Enable pointer events when modal is visible */
+}
+
+.UnverifiedPostsModal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 80vh; /* Set a maximum height for the modal */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.Post {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: var(--cardColor);
+  border-radius: 1rem;
+  gap: 1rem;
+}
+
+.Post > img {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.postReact {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.hover:hover {
+  cursor: pointer;
+}
+
+.ButtonContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.Button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Button--approve {
+  background-color: #4caf50;
+  color: white;
+}
+
+.Button--disapprove {
+  background-color: #f44336;
+  color: white;
+}
+
+.center{
+  text-align: center;
+}
