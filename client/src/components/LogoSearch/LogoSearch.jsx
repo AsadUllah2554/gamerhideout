@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Logo from '../../assets/images/logo.png'
-import './LogoSearch.css'
+import './Logosearch.css'
 
 
 
