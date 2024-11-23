@@ -39,7 +39,7 @@ const Post = ({ data }) => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/post/edit/${postId}`,
+        `${process.env.SERVER_URL}api/post/edit/${postId}`,
         {
           description: editedDescription,
           user,
@@ -59,8 +59,11 @@ const Post = ({ data }) => {
       const postId = data._id; // Assuming data contains the post information
       console.log("Deleting post:", postId);
       const response = await axios.delete(
-        `http://localhost:5000/api/post/${postId}`
-      );
+        `${process.env.SERVER_URL}api/post/${postId}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
       console.log(response.data);
       // Handle success, update UI, or show a message
     } catch (error) {
@@ -74,7 +77,7 @@ const Post = ({ data }) => {
   const handlePostComment = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/post/comment`,
+        `${process.env.SERVER_URL}/api/post/comment`,
         {
           postId: data._id,
           comment: comment,
@@ -104,7 +107,7 @@ const Post = ({ data }) => {
       if (isLiked) {
         // If the post is already liked by the user, send a request to dislike the post
         response = await axios.patch(
-          `http://localhost:5000/api/post/dislike/${postId}`,
+          `${process.env.SERVER_URL}/api/post/dislike/${postId}`,
           {
             username,
             userID,
@@ -113,7 +116,7 @@ const Post = ({ data }) => {
       } else {
         // If the post is not yet liked by the user, send a request to like the post
         response = await axios.patch(
-          `http://localhost:5000/api/post/like/${postId}`,
+          `${process.env.SERVER_URL}/api/post/like/${postId}`,
           {
             username,
             userID,
@@ -131,11 +134,12 @@ const Post = ({ data }) => {
   const handleUsernameClick = async () => {
     await axios
       .post(
-        "http://localhost:5000/auth/profile/findbyid",
+        `${process.env.SERVER_URL}/auth/profile/findbyid`,
         { userID: data.user },
         {
-          withCredentials: true,
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
         }
       )
       .then((res) => {

@@ -8,7 +8,7 @@ const UnverifiedPostsModal = ({ isOpen, closeModal, unverifiedPosts,setunverifie
   const approvePost = async (postId) => {
     try {
       console.log(postId);
-      const response = await axios.post(`http://localhost:5000/api/posts/verify/${postId}`, { status: 'approve' });
+      const response = await axios.post(`${process.env.SERVER_URL}api/posts/verify/${postId}`, { status: 'approve' });
       console.log(response.data);
       // Update UI or take further actions based on the response
       setunverifiedPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
@@ -20,7 +20,7 @@ const UnverifiedPostsModal = ({ isOpen, closeModal, unverifiedPosts,setunverifie
   
   const disapprovePost = async (postId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/posts/verify/${postId}`, { status: 'disapprove' });
+      const response = await axios.post(`${process.env.SERVER_URL}/api/posts/verify/${postId}`, { status: 'disapprove' });
       console.log(response.data);
       // Update UI or take further actions based on the response
       setunverifiedPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));

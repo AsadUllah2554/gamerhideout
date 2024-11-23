@@ -5,31 +5,37 @@ import axios from "axios";
 import { PostContext } from "../../context/postContext";
 import { ColorSchemeScript } from "@mantine/core";
 import { toast } from "react-toastify";
+import { useUserContext } from "../../hooks/useUserContext";
 
 const Posts = () => {
-  // const [posts, setPosts] = useState([]);
-
   const { posts, setPosts } = useContext(PostContext);
+  const { user } = useUserContext()
+  console.log("User in posts: ", user);
   console.log("Posts:", posts);
-
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(`${process.env.SERVER_URL}/api/posts`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      console.log("Posts response: ", response);
+      setPosts(response.data.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      toast.error("Error fetching posts:", error);
+    }
+  };
   useEffect(() => {
     let isMounted = true;
-    axios
-      .get(`http://localhost:5000/api/posts`)
-      .then((response) => {
-        // Update state with fetched posts
+    if (user) {
+      fetchPosts();
+    }
 
-        setPosts(response.data.data);
-        console.log("Posts:", response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-        toast.error("Error fetching posts:", error);
-      });
-      return () => {
-        isMounted = false;
-      };
-  }, []);
+    return () => {
+      isMounted = false;
+    };
+  }, [user]);
 
   return (
     <div className="Posts">

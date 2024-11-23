@@ -9,6 +9,8 @@ import Chat from "./pages/Chat/Chat";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProfile from "./components/UserProfile/UserProfile";
+import Marketplace from "./pages/MarketPlace/MarketPlace";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 // import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
@@ -60,6 +62,10 @@ console.log("user from home " ,user)
       <Route path="/signin"  element={!user ? <SignInPage  />: <Navigate to='/' />} />
       <Route path="/chat" element={user  && <Chat />  } />
       <Route path="/profile" element={user  && <UserProfile />  } />
+      
+      <Route path="/market" element={user  && <Marketplace />  } />
+      <Route path="/product/:id" element={user  && < ProductDetail />} />
+
      </Routes>
     </Router>
   );

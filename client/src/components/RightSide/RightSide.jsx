@@ -27,7 +27,7 @@ const RightSide = () => {
   const getNotifications = () => {
     // Axios GET request
     setPost('notifications')
-    axios.get(`http://localhost:5000/api/notifications`)
+    axios.get(`${process.env.SERVER_URL}/api/notifications`)
       .then(response => {
         // Update state with fetched posts
       
@@ -72,7 +72,7 @@ const RightSide = () => {
     <div className="RightSide">
       <div className="navIcons">
  <Link to={"/"} >      <img src={Home} alt="" /> </Link> 
-        <UilSetting />
+ <Link to="/market" >        <UilSetting /> </Link> 
   <img src={Noti} alt="notifcation" onClick={getNotifications} />   
   {/* {(user.role === "admin") && <img src={Comment} alt="" onClick={getUnVerifiedPosts} />} */}
   <Link to="/chat"><img src={Comment} alt="" /></Link>

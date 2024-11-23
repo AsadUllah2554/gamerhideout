@@ -82,7 +82,7 @@ const ProfileCard = () => {
       if (coverImage) formData.append("coverPicture", coverImage);
 
       const response = await axios.patch(
-        `http://localhost:5000/auth/profile/${user._id}`,
+        `${process.env.SERVER_URL}/auth/profile/${user._id}`,
         formData,
         {
           headers: {
@@ -96,7 +96,7 @@ const ProfileCard = () => {
         return;
       }
       console.log(response);
-      // Update user context
+     
       setUser((prevUser) => ({
         ...prevUser,
         name: data.fullName,
@@ -151,7 +151,7 @@ const ProfileCard = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:5000/auth/profile/edit`,
+        `${process.env.SERVER_URL}/auth/profile/edit`,
         {
           userID: editedUser._id,
           tagline:
@@ -190,13 +190,13 @@ const ProfileCard = () => {
         <hr />
         <div>
           <div className="  follow ">
-            <span>{user.semester}</span>
+            <span>{user.postCount ? user.postCount : '0'}</span>
             <span className="">Posts</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
             <span>2,400</span>
-            <span>Followers</span>
+            <span>Friends</span>
           </div>
         </div>
         <hr />

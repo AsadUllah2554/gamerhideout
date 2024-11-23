@@ -45,17 +45,15 @@ const PostShare = () => {
 
       // Sending to database
       const response = await axios.post(
-        "http://localhost:5000/api/post/create",
+        `${process.env.SERVER_URL}/api/post/create`,
         formData,
         {
           headers: {
+            Authorization: `Bearer ${user.token}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
-
-      //Log the response or handle it accordingly
-      console.log(response.data);
 
       message.success("Post shared successfully");
       setDescription("");
