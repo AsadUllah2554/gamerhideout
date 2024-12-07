@@ -10,6 +10,7 @@ import { FeatureUnderDevelopmentModal } from "../../components/UnderDevelopment/
 const SignInPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isFeatureModalVisible, setIsFeatureModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   console.log("isFeatureModalVisible ", isFeatureModalVisible);
   const [formData, setFormData] = useState({
     name: "",
@@ -24,6 +25,7 @@ const SignInPage = () => {
   const loginAsGuest = async (location) => {
 
     try {
+      setLoading(true);
       const response = await axios.post(
         `${process.env.SERVER_URL}/auth/guest`,
         {},
@@ -37,16 +39,21 @@ const SignInPage = () => {
           ...response.data.user,
           token: response.data.token,
         });
+        setLoading(false);
         navigate(location);
       } else {
+        setLoading(false);
         message.error(
           "Guest login failed: " + response.data.message
         );
       }
     } catch (error) {
+      setLoading(false);
       message.error(
         "Error in guest login: " + error.message
       );
+    }finally{
+      setLoading(false);
     }
   };
   const google = () => {
@@ -75,6 +82,7 @@ const SignInPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const endpoint = isSignUp ? "/auth/signup" : "/auth/login";
       const response = await axios.post(
         `${process.env.SERVER_URL}${endpoint}`,
@@ -89,8 +97,10 @@ const SignInPage = () => {
           ...response.data.user,
           token: response.data.token,
         });
+        setLoading(false);
         navigate("/");
       } else {
+        setLoading(false);
         message.error(
           isSignUp
             ? "Signup failed: "
@@ -98,9 +108,12 @@ const SignInPage = () => {
         );
       }
     } catch (error) {
+      setLoading(false);
       message.error(
         isSignUp ? "Error in signup: " : "Error in signin: " + error.message
       );
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -146,6 +159,7 @@ const SignInPage = () => {
                 size="large"
                 className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 h-12 px-8 text-lg"
                 onClick={()=>loginAsGuest('/market')}
+                disabled={loading}
               >
                 Explore Marketplace
               </Button>
@@ -222,6 +236,7 @@ const SignInPage = () => {
                   type="primary"
                   htmlType="submit"
                   className="w-full h-12 bg-blue-600 hover:bg-blue-700 border-0 text-lg"
+                  disabled={loading}
                 >
                   {isSignUp ? "Start Gaming Journey" : "Sign In"}
                 </Button>
@@ -232,7 +247,8 @@ const SignInPage = () => {
                   htmlType="submit"
                   className="w-full mt-4 h-12 bg-blue-600 hover:bg-blue-700 border-0 text-lg"
                   onClick={()=>loginAsGuest('/')}
-               >
+                  disabled={loading}
+                >
                   Roam as Guest User
                 </Button>
               <Divider>
