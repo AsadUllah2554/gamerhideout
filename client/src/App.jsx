@@ -17,7 +17,7 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 function App() {
   const { user } = useUserContext();
 
-  console.log("user from home ", user);
+
 
   return (
     <Router>

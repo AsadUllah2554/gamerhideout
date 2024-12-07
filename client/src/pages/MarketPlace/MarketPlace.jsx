@@ -56,11 +56,10 @@ const Marketplace = () => {
   const [form] = Form.useForm();
   const [image, setImage] = useState(null);
 
-  console.log("items :", items);
-  console.log("iallItems :", allItems);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("searchTerm :", searchTerm);
+
   const [currentPage, setCurrentPage] = useState(1); // Pagination state
   const [itemsPerPage] = useState(12); // Items per page
   const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
@@ -93,7 +92,7 @@ const Marketplace = () => {
     price: 0,
     category: "",
   });
-  console.log("newItem :", newItem);
+ 
 
   useEffect(() => {
     setLoading(true);
@@ -116,10 +115,7 @@ const Marketplace = () => {
               throw error;
             }),
         ]);
-        console.log("user items res :", userItemsResponse);
-
-        console.log("items res :", allItemsResponse);
-        console.log("user items res :", userItemsResponse);
+    
         setItems(allItemsResponse.data.data);
         setAllItems(allItemsResponse.data.data);
         setUserItems(userItemsResponse.data.data);
@@ -135,7 +131,7 @@ const Marketplace = () => {
   }, []);
 
   const handleSearch = (e) => {
-    console.log("search value :", e.target.value);
+
     setSearchTerm(e.target.value);
 
     if (!e.target.value) {
@@ -149,7 +145,7 @@ const Marketplace = () => {
   };
 
   const handleFilterChange = (value) => {
-    console.log("selected category :", value);
+
     setSelectedCategory(value);
 
     if (value) {
@@ -205,7 +201,7 @@ const Marketplace = () => {
         message.error(response.data.error.message);
         return;
       }
-      console.log(response);
+
       // Update user context
       setUser((prevUser) => ({
         ...prevUser,
@@ -258,11 +254,11 @@ const Marketplace = () => {
         setLoading(false);
         return;
       }
-      console.log(response);
+
 
       setItems((prevItems) => [response.data.data, ...prevItems]);
       setAllItems((prevItems) => [response.data.data, ...prevItems]);
-      console.log("items after update :", items);
+  
       setIsModalOpen(false);
       setLoading(false);
     } catch (error) {
@@ -287,7 +283,7 @@ const Marketplace = () => {
         message.error(response.data.error.message);
         return;
       }
-      console.log(response);
+ 
       setItems(items.filter((item) => item._id !== itemId));
     } catch (error) {
       console.error("Error deleting item:", error);

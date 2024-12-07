@@ -15,7 +15,7 @@ const PostShare = () => {
   const { user } = useUserContext();
   const { posts, setPosts } = useContext(PostContext);
 
-  console.log("Posts in share:", posts);
+
 
   const handlePostSubmit = async (e) => {
     if (e) {
@@ -56,8 +56,7 @@ const PostShare = () => {
         setPostContent("");
         setImage(null);
         setPostImage(null);
-        console.log("Post in share: ", response.data);
-        console.log("Post in share: ", response.data.data);
+      
         setPosts((prevPosts) => [response.data.data, ...prevPosts]);
         setLoading(false);
       }

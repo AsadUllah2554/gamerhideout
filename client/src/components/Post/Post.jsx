@@ -21,7 +21,7 @@ const Post = ({ post }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [showAllComments, setShowAllComments] = useState(false);
   const [comments, setComments] = useState(post.comments);
-  console.log("comments:", comments);
+
   const [editedDescription, setEditedDescription] = useState(post.description);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,7 +58,7 @@ const Post = ({ post }) => {
 
   const handleEdit = async () => {
     const postId = data._id;
-    console.log("Editing post:", postId);
+ 
 
     try {
       const response = await axios.patch(
@@ -68,7 +68,7 @@ const Post = ({ post }) => {
           user,
         }
       );
-      console.log(response.data);
+  
 
       setIsEditing(false);
     } catch (error) {
@@ -79,7 +79,7 @@ const Post = ({ post }) => {
   const handleDelete = async () => {
     try {
       const postId = data._id; // Assuming data contains the post information
-      console.log("Deleting post:", postId);
+     
       const response = await axios.delete(
         `${process.env.SERVER_URL}api/post/${postId}`,
         {
@@ -88,7 +88,7 @@ const Post = ({ post }) => {
           },
         }
       );
-      console.log(response.data);
+   
       // Handle success, update UI, or show a message
     } catch (error) {
       console.error("Error deleting post:", error);
@@ -96,7 +96,7 @@ const Post = ({ post }) => {
     }
   };
 
-  console.log("comment :", comment);
+
 
   const handlePostComment = async () => {
     if (!commentText.trim()) return;
@@ -139,7 +139,7 @@ const Post = ({ post }) => {
 
   const likePost = async () => {
     const postId = post._id;
-    console.log("Toggling like for post:", postId);
+
     const username = user.username;
     const userID = user._id;
 
@@ -183,7 +183,7 @@ const Post = ({ post }) => {
     }
   };
   const handleUsernameClick = async () => {
-    console.log("Post " + post._id + " username clicked");
+
     navigate(`/profile/${post.user._id}`);
   };
 

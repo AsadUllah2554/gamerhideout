@@ -82,7 +82,7 @@ const ProfileCard = () => {
         message.error(response.data.error.message);
         return;
       }
-      console.log(response);
+
 
       setUser((prevUser) => ({
         ...prevUser,

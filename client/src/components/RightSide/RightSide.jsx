@@ -32,7 +32,7 @@ const RightSide = () => {
         // Update state with fetched posts
       
         setNotifcations(response.data.data);
-        console.log('notifcations from navbar side:', response.data.data);
+
       })
       .catch(error => {
         console.error('Error fetching posts:', error);

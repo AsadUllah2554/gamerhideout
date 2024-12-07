@@ -11,7 +11,6 @@ const SignInPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isFeatureModalVisible, setIsFeatureModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log("isFeatureModalVisible ", isFeatureModalVisible);
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -69,7 +68,7 @@ const SignInPage = () => {
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
-    console.log("isSignUp", isSignUp);
+
     // Reset form data when toggling
     setFormData({
       name: "",

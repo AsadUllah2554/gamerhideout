@@ -24,7 +24,7 @@ const TimelinePage = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      console.log("Posts response: ", response);
+
       setPosts(response.data.data);
       setLoading(false);
     } catch (error) {

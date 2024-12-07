@@ -32,13 +32,11 @@ const UserProfile = () => {
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
   const [profileImage, setProfileImage] = useState();
   const [coverImage, setCoverImage] = useState();
-  console.log("currentUser ", currentUser);
+;
   const { id } = useParams(); // Gets the user ID from the URL
-  console.log("userId ", id);
 
-  console.log("user ", user);
+
   const [posts, setPosts] = useState([]);
-  console.log("posts ", posts);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
@@ -48,15 +46,15 @@ const UserProfile = () => {
   const fetchUserProfile = async () => {
     setLoading(true);
     try {
-      console.log("userId in try ");
+    
       if (!id) {
-        console.log("currentUser in else");
+     
         setProfileUser(currentUser);
         setIsOwnProfile(true);
         // const response = await fetchUserProfileById(userId);
         // setProfileUser(response.data);
       } else {
-        console.log("userId in else ");
+  
         const fetchedUser = await axios.post(
           `${process.env.SERVER_URL}/auth/profile/findbyid`,
           { id },
@@ -66,8 +64,7 @@ const UserProfile = () => {
             },
           }
         );
-        console.log("found user", fetchedUser.data.user);
-        setProfileUser(fetchedUser.data.user);
+       setProfileUser(fetchedUser.data.user);
       }
       const targetUserId = id || currentUser._id;
       // Fetch user's posts
@@ -79,7 +76,6 @@ const UserProfile = () => {
           },
         }
       );
-      console.log("Posts response: ", postsResponse.data.posts);
       setPosts(postsResponse.data.posts);
       setLoading(false);
       // Check friendship status
@@ -169,7 +165,7 @@ const UserProfile = () => {
         message.error(response.data.error.message);
         return;
       }
-      console.log(response);
+ 
 
       setUser((prevUser) => ({
         ...prevUser,
@@ -178,7 +174,7 @@ const UserProfile = () => {
         profilePicture: response.data.profilePicture || prevUser.profilePicture,
         coverPicture: response.data.coverPicture || prevUser.coverPicture,
       }));
-      console.log("User updated", currentUser);
+     
       message.success("Profile updated successfully");
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -189,7 +185,6 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    console.log("useEffect hook empty ");
     fetchUserProfile();
   }, [id]);
 
