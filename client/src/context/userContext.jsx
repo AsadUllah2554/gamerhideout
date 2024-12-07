@@ -3,7 +3,7 @@ import {createContext, useState,useEffect } from 'react';
 export const UserContext = createContext();
 
 export const UserContextProvider = ({children}) => {
-  const THIRTY_DAYS_IN_MS = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+  const THIRTY_DAYS_IN_MS = 30 * 24 * 60 * 60 * 1000; 
 
     const [user, setUser] = useState(() => {
         // Initialize user state from localStorage

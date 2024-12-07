@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../../components/ChatBox/ChatBox";
 import Conversation from "../../components/Coversation/Conversation";
 import LogoSearch from "../../components/LogoSearch/LogoSearch";
-import NavIcons from "../../components/NavIcons/NavIcons";
+import NavIcons from "../../components/Navbar/Navbar";
 import "./Chat.css";
 import { io } from "socket.io-client";
 import { useUserContext } from "../../hooks/useUserContext";
