@@ -26,7 +26,7 @@ const SignInPage = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${process.env.SERVER_URL}/auth/guest`,
+        `${process.env.SERVER_URL}auth/guest`,
         {},
         {
           headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ const SignInPage = () => {
     }
   };
   const google = () => {
-    window.open(`${process.env.SERVER_URL}/auth/google`, "_self");
+    window.open(`${process.env.SERVER_URL}auth/google`, "_self");
   };
 
   const handleInputChange = (e) => {
@@ -82,7 +82,7 @@ const SignInPage = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const endpoint = isSignUp ? "/auth/signup" : "/auth/login";
+      const endpoint = isSignUp ? "auth/signup" : "auth/login";
       const response = await axios.post(
         `${process.env.SERVER_URL}${endpoint}`,
         formData,

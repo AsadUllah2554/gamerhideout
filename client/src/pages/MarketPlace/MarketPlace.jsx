@@ -99,11 +99,11 @@ const Marketplace = () => {
     const fetchItems = async () => {
       try {
         const [allItemsResponse, userItemsResponse] = await Promise.all([
-          axios.get(`${process.env.SERVER_URL}/api/market/items`, {
+          axios.get(`${process.env.SERVER_URL}api/market/items`, {
             headers: { Authorization: `Bearer ${user.token}` },
           }),
           axios
-            .get(`${process.env.SERVER_URL}/api/market/items/${user._id}`, {
+            .get(`${process.env.SERVER_URL}api/market/items/${user._id}`, {
               headers: { Authorization: `Bearer ${user.token}` },
             })
             .catch((error) => {
@@ -188,7 +188,7 @@ const Marketplace = () => {
       if (image) formData.append("image", image);
 
       const response = await axios.patch(
-        `${process.env.SERVER_URL}/auth/profile/${user._id}`,
+        `${process.env.SERVER_URL}auth/profile/${user._id}`,
         formData,
         {
           headers: {
@@ -239,7 +239,7 @@ const Marketplace = () => {
       if (image) formData.append("image", image);
 
       const response = await axios.post(
-        `${process.env.SERVER_URL}/api/market`,
+        `${process.env.SERVER_URL}api/market`,
         formData,
         {
           headers: {
@@ -272,7 +272,7 @@ const Marketplace = () => {
   const handleDeleteItem = async (itemId) => {
     try {
       const response = await axios.delete(
-        `${process.env.SERVER_URL}/api/market/${itemId}`,
+        `${process.env.SERVER_URL}api/market/${itemId}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,

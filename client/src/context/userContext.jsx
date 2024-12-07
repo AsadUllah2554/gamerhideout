@@ -45,7 +45,7 @@ export const UserContextProvider = ({children}) => {
 
         setUser(null);
       };
-      console.log('UserContext: ',user);
+ 
     
     return (
         <UserContext.Provider value={{user, setUser, logout}}>

@@ -9,17 +9,16 @@ import { message } from "antd";
 const Posts = () => {
   const { posts, setPosts } = useContext(PostContext);
   const { user } = useUserContext()
-  console.log("User in posts: ", user);
-  console.log("Posts:", posts);
+
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(`${process.env.SERVER_URL}/api/posts`, {
+      const response = await axios.get(`${process.env.SERVER_URL}api/posts`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      console.log("Posts response: ", response);
+    
       setPosts(response.data.data);
     } catch (error) {
       console.error("Error fetching posts:", error);

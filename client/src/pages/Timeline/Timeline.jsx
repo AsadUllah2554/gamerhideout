@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Input, Button, Card, Modal } from "antd";
+import { Input, Button, Card, Modal, message } from "antd";
 import backgroundImage from "../../assets/images/hero.png";
 import ProfileCard from "../../components/ProfileCard.jsx/ProfileCard";
 import { useUserContext } from "../../hooks/useUserContext";
@@ -19,7 +19,7 @@ const TimelinePage = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${process.env.SERVER_URL}/api/posts`, {
+      const response = await axios.get(`${process.env.SERVER_URL}api/posts`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

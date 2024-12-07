@@ -27,7 +27,7 @@ const RightSide = () => {
   const getNotifications = () => {
     // Axios GET request
     setPost('notifications')
-    axios.get(`${process.env.SERVER_URL}/api/notifications`)
+    axios.get(`${process.env.SERVER_URL}api/notifications`)
       .then(response => {
         // Update state with fetched posts
       

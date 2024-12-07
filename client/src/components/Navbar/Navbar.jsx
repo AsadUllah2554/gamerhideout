@@ -10,7 +10,6 @@ import { FeatureUnderDevelopmentModal } from "../UnderDevelopment/FeatureUnderDe
 
 const Navbar = ({ title }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log("Modal open: ", isModalOpen);
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-20 flex justify-between items-center p-2 px-4 md:p-6 md:px-20">

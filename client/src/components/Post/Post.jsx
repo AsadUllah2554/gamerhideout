@@ -103,7 +103,7 @@ const Post = ({ post }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${process.env.SERVER_URL}/api/post/comment`,
+        `${process.env.SERVER_URL}api/post/comment`,
 
         {
           postId: post._id,
@@ -162,8 +162,8 @@ const Post = ({ post }) => {
 
       setPosts(updatedPosts);
       const endpoint = isLikedByUser
-        ? `${process.env.SERVER_URL}/api/post/dislike/${postId}`
-        : `${process.env.SERVER_URL}/api/post/like/${postId}`;
+        ? `${process.env.SERVER_URL}api/post/dislike/${postId}`
+        : `${process.env.SERVER_URL}api/post/like/${postId}`;
 
       await axios.patch(
         endpoint,

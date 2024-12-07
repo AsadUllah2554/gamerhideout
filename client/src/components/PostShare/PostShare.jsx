@@ -41,7 +41,7 @@ const PostShare = () => {
       formData.append("name", user.name);
 
       const response = await axios.post(
-        `${process.env.SERVER_URL}/api/post/create`,
+        `${process.env.SERVER_URL}api/post/create`,
         formData,
         {
           headers: {

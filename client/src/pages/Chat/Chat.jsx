@@ -20,10 +20,8 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [pendingInvites, setPendingInvites] = useState([]);
   const [isPendingInvites, setIsPendingInvites] = useState(false);
-  console.log("pendingInvites:", pendingInvites);
-  console.log("length:", pendingInvites.length);
 
-  console.log("userGroups:", userGroups);
+ ;
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -37,7 +35,7 @@ const Chat = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.SERVER_URL}/api/chat/creategroup`,
+        `${process.env.SERVER_URL}api/chat/creategroup`,
         {
           creatorId: user._id,
           groupName: groupName,
@@ -48,7 +46,7 @@ const Chat = () => {
       );
 
       // Handle success response
-      console.log(response.data);
+
       setGroupName("");
       setSemester("");
       setSection("");
@@ -69,9 +67,9 @@ const Chat = () => {
     const fetchUserGroups = async () => {
       try {
         const response = await axios.get(
-          `${process.env.SERVER_URL}/api/chat/groups/${user._id}`
+          `${process.env.SERVER_URL}api/chat/groups/${user._id}`
         );
-        console.log("User groups: ", response.data.userGroups);
+     
         const userAcceptedGroups = response.data.userGroups.filter((group) =>
           group.members.some(
             (member) =>
@@ -108,9 +106,9 @@ const Chat = () => {
     const fetchPendingInvites = async () => {
       try {
         const response = await axios.get(
-          `${process.env.SERVER_URL}/api/chat/invitations/${user._id}`
+          `${process.env.SERVER_URL}api/chat/invitations/${user._id}`
         );
-        console.log("Pending invites: ", response.data);
+ 
         setPendingInvites(response.data.pendingInvitations);
       } catch (error) {
         console.error("Error fetching pending invites:", error);

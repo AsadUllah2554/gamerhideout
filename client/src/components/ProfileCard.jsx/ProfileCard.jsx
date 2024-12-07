@@ -69,7 +69,7 @@ const ProfileCard = () => {
       if (coverImage) formData.append("coverPicture", coverImage);
 
       const response = await axios.patch(
-        `${process.env.SERVER_URL}/auth/profile/${user._id}`,
+        `${process.env.SERVER_URL}auth/profile/${user._id}`,
         formData,
         {
           headers: {

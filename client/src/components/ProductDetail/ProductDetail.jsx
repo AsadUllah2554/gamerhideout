@@ -15,7 +15,7 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `${process.env.SERVER_URL}/api/market/items/${id}`,
+          `${process.env.SERVER_URL}api/market/items/${id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,

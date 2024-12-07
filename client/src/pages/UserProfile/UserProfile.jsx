@@ -56,7 +56,7 @@ const UserProfile = () => {
       } else {
   
         const fetchedUser = await axios.post(
-          `${process.env.SERVER_URL}/auth/profile/findbyid`,
+          `${process.env.SERVER_URL}auth/profile/findbyid`,
           { id },
           {
             headers: {
@@ -69,7 +69,7 @@ const UserProfile = () => {
       const targetUserId = id || currentUser._id;
       // Fetch user's posts
       const postsResponse = await axios.get(
-        `${process.env.SERVER_URL}/api/posts/${targetUserId}`,
+        `${process.env.SERVER_URL}api/posts/${targetUserId}`,
         {
           headers: {
             Authorization: `Bearer ${currentUser.token}`,
@@ -100,7 +100,7 @@ const UserProfile = () => {
       if (isFriend) {
         // Remove friend
         await axios.delete(
-          `${process.env.SERVER_URL}/api/friends/${user._id}`,
+          `${process.env.SERVER_URL}api/friends/${user._id}`,
           {
             headers: {
               Authorization: `Bearer ${currentUser.token}`,
@@ -112,7 +112,7 @@ const UserProfile = () => {
       } else {
         // Add friend
         await axios.post(
-          `${process.env.SERVER_URL}/api/friends/add`,
+          `${process.env.SERVER_URL}api/friends/add`,
           { friendId: user._id },
           {
             headers: {
@@ -152,7 +152,7 @@ const UserProfile = () => {
       if (coverImage) formData.append("coverPicture", coverImage);
 
       const response = await axios.patch(
-        `${process.env.SERVER_URL}/auth/profile/${user._id}`,
+        `${process.env.SERVER_URL}auth/profile/${user._id}`,
         formData,
         {
           headers: {
