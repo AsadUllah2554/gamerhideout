@@ -29,6 +29,8 @@ Gamers Hideout is a full-stack social media platform designed specifically for g
 - Context API
 - Environment Variable Configuration
 
+Note: Some features are under development
+
 ## 📦 Installation
 
 ### Prerequisites
@@ -36,25 +38,21 @@ Gamers Hideout is a full-stack social media platform designed specifically for g
 - npm or yarn
 
 ### Setup
-1. Clone the repository
-```bash
-git clone https://github.com/yourusername/gamers-hideout.git
-```
 
-2. Install Dependencies
+1. Install Dependencies
 ```bash
 cd gamers-hideout
 npm install
 ```
 
-3. Set up Environment Variables
+2. Set up Environment Variables
 - Create a `.env` file
 - Add necessary configurations:
   - `SERVER_URL`
   - `MONGODB_URI`
   - `JWT_SECRET`
 
-4. Run the Application
+3. Run the Application
 ```bash
 npm start
 ```
@@ -62,6 +60,7 @@ npm start
 ## 🌟 Main Components
 - User Authentication
 - Timeline Feed
+- Market Place
 - Post Sharing
 - Profile Management
 - Notifications System
@@ -86,5 +85,4 @@ npm start
 4. Push to the branch
 5. Create a Pull Request
 
-## 📜 License
-This project is licensed under the MIT License.
+
