@@ -29,7 +29,7 @@ const Navbar = ({ title }) => {
           {" "}
           <ShoppingOutlined className="text-2xl text-gray-600 hover:text-blue-600 cursor-pointer" />{" "}
         </Link>
-        <Link to="/profile/">
+        <Link to="/profile">
           <SettingOutlined className="text-2xl text-gray-600 hover:text-blue-600 cursor-pointer" />
         </Link>
       </div>

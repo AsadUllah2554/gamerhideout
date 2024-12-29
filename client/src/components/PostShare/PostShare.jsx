@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState,  useContext } from "react";
 import { useUserContext } from "../../hooks/useUserContext";
 import axios from "axios";
 import { PostContext } from "../../context/postContext";
@@ -14,8 +14,6 @@ const PostShare = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useUserContext();
   const { posts, setPosts } = useContext(PostContext);
-
-
 
   const handlePostSubmit = async (e) => {
     if (e) {

@@ -10,6 +10,7 @@ import { FeatureUnderDevelopmentModal } from "../../components/UnderDevelopment/
 const SignInPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isFeatureModalVisible, setIsFeatureModalVisible] = useState(false);
+  console.log("isFeatureModalVisible", isFeatureModalVisible);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -22,7 +23,6 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   const loginAsGuest = async (location) => {
-
     try {
       setLoading(true);
       const response = await axios.post(
@@ -42,16 +42,12 @@ const SignInPage = () => {
         navigate(location);
       } else {
         setLoading(false);
-        message.error(
-          "Guest login failed: " + response.data.message
-        );
+        message.error("Guest login failed: " + response.data.message);
       }
     } catch (error) {
       setLoading(false);
-      message.error(
-        "Error in guest login: " + error.message
-      );
-    }finally{
+      message.error("Error in guest login: " + error.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -111,7 +107,7 @@ const SignInPage = () => {
       message.error(
         isSignUp ? "Error in signup: " : "Error in signin: " + error.message
       );
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -157,7 +153,7 @@ const SignInPage = () => {
               <Button
                 size="large"
                 className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 h-12 px-8 text-lg"
-                onClick={()=>loginAsGuest('/market')}
+                onClick={() => loginAsGuest("/market")}
                 disabled={loading}
               >
                 Explore Marketplace
@@ -239,17 +235,16 @@ const SignInPage = () => {
                 >
                   {isSignUp ? "Start Gaming Journey" : "Sign In"}
                 </Button>
-               
               </form>
               <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="w-full mt-4 h-12 bg-blue-600 hover:bg-blue-700 border-0 text-lg"
-                  onClick={()=>loginAsGuest('/')}
-                  disabled={loading}
-                >
-                  Roam as Guest User
-                </Button>
+                type="primary"
+                htmlType="submit"
+                className="w-full mt-4 h-12 bg-blue-600 hover:bg-blue-700 border-0 text-lg"
+                onClick={() => loginAsGuest("/")}
+                disabled={loading}
+              >
+                Roam as Guest User
+              </Button>
               <Divider>
                 <span className="text-gray-500">OR</span>
               </Divider>
@@ -275,16 +270,16 @@ const SignInPage = () => {
                   {isSignUp ? "Sign In" : "Sign Up"}
                 </Button>
               </p>
-              <FeatureUnderDevelopmentModal
-                visible={isFeatureModalVisible}
-                onClose={() => setIsFeatureModalVisible(false)}
-                featureName="Google Signin"
-                additionalDetails="Google Signin feature is under development. Please use the email and password to signin."
-              />
             </div>
           </div>
         </div>
       </div>
+      <FeatureUnderDevelopmentModal
+        isOpen={isFeatureModalVisible}
+        onClose={() => setIsFeatureModalVisible(false)}
+        featureName="Google Signin"
+        additionalDetails="Google Signin feature is under development. Please use the email and password to signin."
+      />
     </div>
   );
 };

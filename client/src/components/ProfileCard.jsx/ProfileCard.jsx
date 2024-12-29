@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ProfileCard.css";
 import { useUserContext } from "../../hooks/useUserContext";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase-config";
 import { defaultCoverImage, defaultProfileImage } from "../../common/common";
 
 import {

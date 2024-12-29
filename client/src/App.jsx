@@ -17,8 +17,6 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 function App() {
   const { user } = useUserContext();
 
-
-
   return (
     <Router>
       <Routes>
@@ -33,7 +31,7 @@ function App() {
         />
         <Route path="/chat" element={user && <Chat />} />
         <Route path="/profile/:id" element={user && <UserProfile />} />
-        <Route path="/profile/" element={user && <UserProfile />} />
+        <Route path="/profile" element={user && <UserProfile />} />
 
         <Route path="/market" element={user && <Marketplace />} />
         <Route path="/product/:userId" element={user && <ProductDetail />} />

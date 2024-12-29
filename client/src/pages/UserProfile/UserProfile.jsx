@@ -32,9 +32,7 @@ const UserProfile = () => {
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
   const [profileImage, setProfileImage] = useState();
   const [coverImage, setCoverImage] = useState();
-;
   const { id } = useParams(); // Gets the user ID from the URL
-
 
   const [posts, setPosts] = useState([]);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
@@ -46,15 +44,13 @@ const UserProfile = () => {
   const fetchUserProfile = async () => {
     setLoading(true);
     try {
-    
       if (!id) {
-     
+        console.log("currentUser in id");
         setProfileUser(currentUser);
         setIsOwnProfile(true);
         // const response = await fetchUserProfileById(userId);
         // setProfileUser(response.data);
       } else {
-  
         const fetchedUser = await axios.post(
           `${process.env.SERVER_URL}auth/profile/findbyid`,
           { id },
@@ -64,7 +60,7 @@ const UserProfile = () => {
             },
           }
         );
-       setProfileUser(fetchedUser.data.user);
+        setProfileUser(fetchedUser.data.user);
       }
       const targetUserId = id || currentUser._id;
       // Fetch user's posts
@@ -76,7 +72,18 @@ const UserProfile = () => {
           },
         }
       );
-      setPosts(postsResponse.data.posts);
+      // Check if posts exist and are valid
+      if (
+        Array.isArray(postsResponse.data.posts) &&
+        postsResponse.data.posts.length > 0
+      ) {
+        setPosts(postsResponse.data.posts);
+      } else {
+        message.info("This user has no posts.");
+        setPosts([]); // Set an empty array to avoid errors in rendering
+      }
+
+      setLoading(false);
       setLoading(false);
       // Check friendship status
       // const friendshipResponse = await axios.get(
@@ -99,14 +106,11 @@ const UserProfile = () => {
     try {
       if (isFriend) {
         // Remove friend
-        await axios.delete(
-          `${process.env.SERVER_URL}api/friends/${user._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser.token}`,
-            },
-          }
-        );
+        await axios.delete(`${process.env.SERVER_URL}api/friends/${user._id}`, {
+          headers: {
+            Authorization: `Bearer ${currentUser.token}`,
+          },
+        });
         setIsFriend(false);
         message.success("Removed from friends");
       } else {
@@ -165,7 +169,6 @@ const UserProfile = () => {
         message.error(response.data.error.message);
         return;
       }
- 
 
       setUser((prevUser) => ({
         ...prevUser,
@@ -174,7 +177,7 @@ const UserProfile = () => {
         profilePicture: response.data.profilePicture || prevUser.profilePicture,
         coverPicture: response.data.coverPicture || prevUser.coverPicture,
       }));
-     
+
       message.success("Profile updated successfully");
     } catch (error) {
       console.error("Error updating profile:", error);
